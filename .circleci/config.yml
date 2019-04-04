@@ -3,6 +3,23 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.5.3
+    working_directory: ~/infrastructure_adrs
     steps:
       - checkout
-      - run: rake
+      - run:
+          name: Configure bundler
+          command: |
+            echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
+            source $BASH_ENV
+            gem install bundler
+      - run:
+          name: Install dependencies
+          command: bundle install
+      - run:
+          name: Run CI
+          command: bundle exec rake
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build

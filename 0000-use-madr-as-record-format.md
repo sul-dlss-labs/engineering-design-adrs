@@ -4,7 +4,6 @@ title: ADR-0000
 nav_order: 3
 permalink: records/0000/
 ---
-
 # Use Markdown Architecture Decision Records
 
 * Status: proposed

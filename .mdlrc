@@ -1,4 +1,4 @@
+# Use our custom style ruleset
+style '.mdl.style.rb'
 # Jekyll requires front matter but mdl doesn't like it
 ignore_front_matter true
-# Don't care about line length
-rules "~MD013"
