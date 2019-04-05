@@ -4,10 +4,7 @@ title: Home
 nav_order: 1
 permalink: /
 ---
-
 # Architecture Decision Records of the DLSS Infrastructure Team
-
-[![CircleCI](https://circleci.com/gh/sul-dlss-labs/infrastructure-adrs.svg?style=svg)](https://circleci.com/gh/sul-dlss-labs/infrastructure-adrs)
 
 This repository contains a running and evolving list of architecture decision records (ADRs), documenting architectural decisions made by the [DLSS Infrastructure Team](https://github.com/orgs/sul-dlss/teams/infrastructure-team). Architecture decisions pertain to practices, projects, policies, software, system architecture, and technology selection.
 
