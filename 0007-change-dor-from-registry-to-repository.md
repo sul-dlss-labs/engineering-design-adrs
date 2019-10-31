@@ -1,20 +1,24 @@
 ---
 layout: default
-title: Template
-nav_order: 2
-permalink: template/
+title: ADR-0007
+nav_order: 10
+permalink: records/0007/
 ---
-# [short title of solved problem and solution]
+# Change DOR from Registry to Repository
 
-* Status: [proposed | rejected | accepted | deprecated | … | superseded by [ADR-0005](0005-example.md)] <!-- required -->
+* Status: proposed
 * Decider(s): <!-- required -->
-  * [list everyone involved in the decision]
+  * Tom Cramer
+  * Andrew Berger
+  * Vivian Wong
+  * Infrastructure Team
+* Author(s):
+  * Justin Coyne
+  * Mike Giarlo
   * ...
 * Date(s): <!-- required -->
-  * Status (from above): [YYYY-MM-DD when the decision was last updated]
+  * proposed: 2019-10-31
   * ...
-
-Technical Story: [description | ticket/issue URL] <!-- optional -->
 
 ## Context and Problem Statement <!-- required -->
 
