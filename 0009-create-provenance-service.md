@@ -1,20 +1,23 @@
 ---
 layout: default
-title: Template
-nav_order: 2
-permalink: template/
+title: ADR-0009
+nav_order: 12
+permalink: records/0009/
 ---
-# [short title of solved problem and solution]
+# Create Provenance Service
 
-* Status: [proposed | rejected | accepted | deprecated | … | superseded by [ADR-0005](0005-example.md)] <!-- required -->
+* Status: proposed
 * Decider(s): <!-- required -->
-  * [list everyone involved in the decision]
+  * Andrew Berger
+  * Vivian Wong
+  * Infrastructure Team
+* Author(s):
+  * Justin Coyne
+  * Mike Giarlo
   * ...
 * Date(s): <!-- required -->
-  * Status (from above): [YYYY-MM-DD when the decision was last updated]
+  * proposed: 2019-10-31
   * ...
-
-Technical Story: [description | ticket/issue URL] <!-- optional -->
 
 ## Context and Problem Statement <!-- required -->
 
