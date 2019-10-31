@@ -1,20 +1,23 @@
 ---
 layout: default
-title: Template
-nav_order: 2
-permalink: template/
+title: ADR-0005
+nav_order: 8
+permalink: records/0005/
 ---
-# [short title of solved problem and solution]
+# Use Deposit API in ETD Application
 
-* Status: [proposed | rejected | accepted | deprecated | … | superseded by [ADR-0005](0005-example.md)] <!-- required -->
+* Status: proposed
 * Decider(s): <!-- required -->
-  * [list everyone involved in the decision]
+  * Cathy Aster
+  * Vivian Wong
+  * Infrastructure Team
+* Author(s):
+  * Justin Coyne
+  * Mike Giarlo
   * ...
 * Date(s): <!-- required -->
-  * Status (from above): [YYYY-MM-DD when the decision was last updated]
+  * proposed: 2019-10-31
   * ...
-
-Technical Story: [description | ticket/issue URL] <!-- optional -->
 
 ## Context and Problem Statement <!-- required -->
 
