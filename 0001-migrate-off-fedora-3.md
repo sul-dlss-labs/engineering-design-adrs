@@ -17,7 +17,7 @@ permalink: records/0001/
 * Author(s):
   * Justin Coyne
   * Mike Giarlo
-  * ...
+  * Peter Mangiafico
 * Date(s): <!-- required -->
   * proposed: 2019-11-06
   * ...
