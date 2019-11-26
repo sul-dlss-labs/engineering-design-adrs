@@ -34,6 +34,7 @@ Fedora 3 is unsupported and has been unsupported for four years; it is unlikely 
 * The Fedora 3 community is disappearing, so we are increasingly going it alone
 * Fedora 3 is a critical piece of SDR infrastructure and represents an enormous risk
 * Samvera software that supports Fedora 3 is outdated and maintained/supported only through our own efforts, preventing us from using mainstream Samvera software
+* We have (unverified) concerns about the scalability of Fedora 3
 
 ## Considered Options <!-- required -->
 
@@ -44,52 +45,56 @@ Fedora 3 is unsupported and has been unsupported for four years; it is unlikely 
 
 ## Decision Outcome <!-- required -->
 
+**TBD!**
+
 Chosen option: "[option 1]", because [justification. e.g., only option, which meets k.o. criterion decision driver | which resolves force force | … | comes out best (see below)].
-
-### Positive Consequences <!-- optional -->
-
-* [e.g., improvement of quality attribute satisfaction, follow-up decisions required, …]
-* ...
-
-### Negative Consequences <!-- optional -->
-
-* [e.g., compromising quality attribute, follow-up decisions required, …]
-* ...
 
 ## Pros and Cons of the Options <!-- optional -->
 
 ### Do Nothing
 
-* Bad, see decision drivers above.
+* Pro
+  * Less work (for now, until it falls apart)
+* Con
+  * See decision drivers above.
 
 ### Maintain Fedora 3
 
-* Bad, see decision drivers above.
-* Bad, lack of resources and time to absorb Fedora 3 into our portfolio
-* Bad, lack of expertise with Java development
-* Bad, completely out of step with community trends
+* Con
+  * See decision drivers above.
+  * Lack of resources and time to absorb Fedora 3 into our portfolio
+  * Lack of expertise with Java development
+  * Completely out of step with community trends
 
 ### Replace Fedora 3 as a metadata store with PostgreSQL
 
-* Good, Postgres is a performant, scalable, well-tested, open-source solution in wide use
-* Good, Postgres is the most common replacement for Fedora in the Samvera community, now that Valkyrie is catching on
-* Good, Postgres supports both schemaless data (JSON) and schema-based data, with built-in indexing, relationships, and transactions
-* Neutral, Postgres incentivizes changing our metadata model to be based on JSON (see also: COCINA data model)
-* Bad, Fedora functionality missing in Postgres includes "object" versioning (and services pertaining to binaries, which DOR does not use)
-* Good, Should we decide to make more use of cloud-based hosting services, Postgres is easier to support and most cloud providers have a native Postgres-backed service (for cost reduction)
-* Good, Peer institutions such as Princeton, Northwestern, and BPL are using Postgres
+* Pro
+  * Postgres is a performant, scalable, well-tested, open-source solution in wide use
+  * Postgres is the most common replacement for Fedora in the Samvera community, now that Valkyrie is catching on
+  * Postgres supports both schemaless data (JSON) and schema-based data, with built-in indexing, relationships, and transactions
+  * Should we decide to make more use of cloud-based hosting services, Postgres is easier to support and most cloud providers have a native Postgres-backed service (for cost reduction)
+  * Peer institutions such as Princeton, Northwestern, and BPL are using Postgres
+  * Postgres works well with ActiveRecord and other Rails patterns (assuming we stay with Rails)
+* Con
+  * Fedora functionality missing in Postgres includes "object" versioning (and services pertaining to binaries, which DOR does not use)
+* Note (leaning toward Pro)
+  * Postgres incentivizes changing our metadata model to be based on JSON (see also: COCINA data model)
 
 ### Replace Fedora 3 with latest Fedora version
 
-* Neutral, Fedora 4+ incentivizes changing our metadata model to be based on RDF
-* Bad, Fedora has many fewer users and maintainers than Postgres
-* Bad, There is a significantly smaller set of tools that interoperate with Fedora (and RDF) compared with Postgres (and JSON and/or relational data)
-* Bad, Fedora has proven to be challenging for new developers to become conversant with, especially compared with relational databases like Postgres
-* Bad, Fedora lacks transactions, necessitating quasi-transactional functionality at higher layers, which means more code to maintain and opportunities for errors
-* Good, Continuing to use Fedora keeps us aligned with the broader repository community (Islandora/Fedora), though perhaps not with Samvera community trends
-* Bad, Fedora 4+ still has scalability concerns, and we have no reason to believe Fedora 5 or 6 are/will be any better
-* Bad, Fedora is not known to be natively supported by any cloud providers, meaning custom work if we move infrastructure to the cloud
-* Bad, Fedora does not provide querying of relationships natively; requires a sidecar index such as Solr which complicates the architecture
+* Pro
+  * Continuing to use Fedora keeps us aligned with the broader repository community (Islandora/Fedora), though perhaps not with Samvera community trends
+* Con
+  * Fedora has many fewer users and maintainers than Postgres
+  * There is a significantly smaller set of tools that interoperate with Fedora (and RDF) compared with Postgres (and JSON and/or relational data)
+  * Fedora has proven to be challenging for new developers to become conversant with, especially compared with relational databases like Postgres
+  * Fedora lacks transactions, necessitating quasi-transactional functionality at higher layers, which means more code to maintain and opportunities for errors
+  * Fedora 4+ still has scalability concerns, and we have no reason to believe Fedora 5 or 6 are/will be any better
+    * And it is unclear how similar future versions of Fedora will be to Fedora 4.
+  * Fedora is not known to be natively supported by any cloud providers, meaning custom work if we move infrastructure to the cloud
+  * Fedora does not provide querying of relationships natively; requires a sidecar index such as Solr which complicates the architecture
+* Note (leaning toward Con)
+  * Fedora 4+ incentivizes changing our metadata model to be based on RDF
 
 ## Links <!-- optional -->
 
