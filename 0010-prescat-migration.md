@@ -49,19 +49,17 @@ We need to prepare for the future while minimizing disruption to current service
 
 ## Proposed Solution
 
-There are 8 new machines;  they will be set up in pairs - so four distinct pairs;  each pair is a live backup for the other three pairs.
+There are 8 new machines;  they will be set up in pairs - so four distinct pairs;  each pair will have a primary node that will replicate content to a secondary node via an OS-level process.
 
-Each pair will represent:
+Each pair will provide:
 
-- ALL storage for Moabs
+- Storage for some of SDR's Moab objects
 - the prescat Rails app
   - will the database be the same as it is now - a shared postgres db (the same one currently in prod)
-- the redis instance ?
-- all the resque workers for the redis instance ?
+- a redis instance
+- all the resque workers for the redis instance
 
-
-Will each pair have a *running* redis instance and workers, or will that only be true for the "live box"?
-
+Each pair will have a single *running* redis instance and workers. The secondary node of each pair will not have any running services, but in the event of a primary node failure it should be possible to promote a secondary node to the primary role.
 
 ### Questions
 
@@ -72,6 +70,8 @@ Will each pair have a *running* redis instance and workers, or will that only be
        B.  a replica of the first machine
             - running the app, redis, workers, but having a distinct storage root avail to BOTH machines (i.e. both machines in the pair access the 2 logical storage roots)
 
+- Should we run 1 instance of the PostgresDB that provides service for all pairs? Or should each pair be an island, running its own database?
+- If we decide to run a single database shared by all pairs can we run it as a Postgres cluster, with DB nodes on each primary node? This would remove the single PostgresDB as a point of failure.
 
 ## Proposed Steps
 
