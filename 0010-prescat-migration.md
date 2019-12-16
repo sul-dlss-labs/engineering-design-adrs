@@ -14,7 +14,7 @@ permalink: records/0010/
 * Date(s):
   * Proposed: 2019-12-03
 
-## Context and Problem Statement
+### Context and Problem Statement
 
 PROBLEM:
 
@@ -26,28 +26,34 @@ Currently we have 5 production prescat VMs:
 4 - resque worker box
 5 - redis app
 
-and Moabs on 20 storage roots (storing the Moabs) which are mounted (read only) via NFS.
+and Moabs on 2x storage roots (storing the Moabs) which are mounted (read only) via NFS.
 
 The storage roots are on net-app hardware, which is going unsupported in Fall 2020.  
 
 We will be replacing the storage roots with supermicro hardware, which has much more disk space than our current storage roots.
 
-PROBLEM:
+#### PROBLEMS:
 
-Accessioning demand is ever increasing, and it is outpacing our ability to provision storage in a cost effective, scalable way.
+- Accessioning demand is ever increasing, and it is outpacing our ability to provision storage in a cost effective, scalable way.
+  - When we accession the scanned books from Google, we will definitely need a lot more storage.
+- We are increasingly I/O bound for computing checksums and creating zip files, both key components in our preservation strategy.
+- We need to prepare for the future while minimizing disruption to current services.
 
-When we accession the scanned books from Google, we will definitely need a lot more storage.
+## Unblock Google Books Accessioning  
 
-PROBLEM:
+PROBLEM:  Google Books will need a lot of space
 
-We are increasingly I/O bound for computing checksums and creating zip files, both key components in our preservation strategy.
+- QUESTION:  Are google books going to be dark (i.e. preservation only)?
+  - this implies stacks space is not a similar problem (see Google Books analysis doc https://docs.google.com/document/d/1ILEzn9pdjCGdRu37LvNGHaWpLufZg-f-e2nTWgTl5fg)
 
-PROBLEM:
+### Minimum up front cost solution
 
-We need to prepare for the future while minimizing disruption to current services.
+We are not endorsing this approach but it is the simplest way to get a lot more storage quickly.
 
+- use new storage bricks as new storage roots
+  - nfs mount them
 
-## Proposed Solution
+## Proposed Solution per Julian
 
 There are 8 new machines;  they will be set up in pairs - so four distinct pairs;  each pair will have a primary node that will replicate content to a secondary node via an OS-level process.
 
@@ -61,17 +67,15 @@ Each pair will provide:
 
 Each pair will have a single *running* redis instance and workers. The secondary node of each pair will not have any running services, but in the event of a primary node failure it should be possible to promote a secondary node to the primary role.
 
+(At some point, this document will use the term "new endpoint" (or some other term) to refer to a pair as a single entity in the doc)
+
 ### Questions
 
-- is the second machine of the pair
-
-       A. an additional storage root only  
-                 *or*  
-       B.  a replica of the first machine
-            - running the app, redis, workers, but having a distinct storage root avail to BOTH machines (i.e. both machines in the pair access the 2 logical storage roots)
+- Can we get a verification that a single pair will have 1/4 (or some other fraction) of all the stored Moabs?
 
 - Should we run 1 instance of the PostgresDB that provides service for all pairs? Or should each pair be an island, running its own database?
-- If we decide to run a single database shared by all pairs can we run it as a Postgres cluster, with DB nodes on each primary node? This would remove the single PostgresDB as a point of failure.
+  - If we decide to run a single database shared by all pairs we want to run it as a Postgres cluster, with DB nodes on each primary node. (or if impossible, a primary/secondary approach). This would remove the single PostgresDB as a point of failure.
+  - how transparent can we make the "clustered" notion to the app?  Ideally, the app code always thinks it's talking to a normal rails db.
 
 ## Proposed Steps
 
@@ -86,8 +90,6 @@ x.  Mount new hardware as nfs storage root
 x.  Add new server as next storage root
 
 Idea is for new Moabs to go to new storage root, removing need to migrate them later.
-
-
 
 
 x.  Ensure new server works at least as well as existing storage
@@ -128,31 +130,36 @@ z. We need a clear migration plan
 
 ### The prescat ruby app
 
+#### QUESTIONS:
+
 - What is needed to be confident the app works as expected on new hardware (with local storage roots)
 
-- already one central database - can it work with it smoothly (read, write ...)
 - how will new hardware address storage across 2 physical boxes
+  - A: ? our code will work with storage as a single logical node
 - can it work with the correct redis instance
-
-
-- would the workers be balanced across the PAIR of new machines, or what?
-
+  - will we have multiple redis instances in this brave new world?
+- the database:
+  - can we stick with a single database for all four new prescat endpoints? (CRUD ops)
+    - if not, how will databases be coordinated?  how will we know where database entries are for a given druid?  
+    - concerns with transactions - what if we're moving stuff around?
+      - JMo: we're not doing this now
+      - JMa: concerned about transactional integrity for adds and moves and such
+      -
 
 ### The Redis instance, queues, and workers
+
+#### QUESTIONS:
 
 - How do we make sure we are only replicating each file ONE time to each cloud endpoint
 
 
-
-
-### Problem:
+### Hot-Swap Problem (Not Necessarily Related):
 
 We can't currently hot-swap resque workers on a deploy.
 - b/c of the assumption per prescat that all workers are local
   - resque-pool hot-swap assumes one pool only, so will kill any workers on the box.
 
 If we wanted to improve on this during this migration, all of the above neither improves nor degrades the situation.
-
 
 #### Possible Solutions?
 
