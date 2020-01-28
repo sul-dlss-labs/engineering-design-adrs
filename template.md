@@ -6,7 +6,7 @@ permalink: template/
 ---
 # [short title of solved problem and solution]
 
-* Status: [proposed | rejected | accepted | deprecated | … | superseded by [ADR-0005](0005-example.md)] <!-- required -->
+* Status: [drafted | proposed | rejected | accepted | deprecated | … | superseded by [ADR-0005](0005-example.md)] <!-- required -->
 * Decider(s): <!-- required -->
   * [list everyone involved in the decision]
   * ...
