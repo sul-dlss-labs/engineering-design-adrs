@@ -6,17 +6,21 @@ permalink: records/0005/
 ---
 # Use Deposit API in ETD Application
 
-* Status: proposed
+* Status: drafted
 * Decider(s): <!-- required -->
   * Cathy Aster
   * Vivian Wong
   * Infrastructure Team
-* Author(s):
-  * Justin Coyne
-  * Mike Giarlo
-  * ...
+    * Justin Coyne
+    * Mike Giarlo
+    * Peter Mangiafico
+    * Jeremy Nelson
+    * Justin Littman
+    * Naomi Dushay
+    * John Martin
+    * Aaron Collier
 * Date(s): <!-- required -->
-  * proposed: 2019-10-31
+  * drafted: 2019-10-31
   * ...
 
 ## Context and Problem Statement <!-- required -->
@@ -38,7 +42,7 @@ permalink: records/0005/
 
 ## Decision Outcome <!-- required -->
 
-Chosen option: "[option 1]", because [justification. e.g., only option, which meets k.o. criterion decision driver | which resolves force force | … | comes out best (see below)].
+TBD
 
 ### Positive Consequences <!-- optional -->
 
