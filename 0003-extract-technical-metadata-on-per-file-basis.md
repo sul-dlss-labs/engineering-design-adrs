@@ -6,17 +6,21 @@ permalink: records/0003/
 ---
 # Extract Technical Metadata on a Per-File Basis
 
-* Status: proposed
+* Status: drafted
 * Decider(s): <!-- required -->
   * Andrew Berger
   * Vivian Wong
   * Infrastructure Team
-* Author(s):
-  * Justin Coyne
-  * Mike Giarlo
-  * ...
+    * Justin Coyne
+    * Mike Giarlo
+    * Peter Mangiafico
+    * Jeremy Nelson
+    * Justin Littman
+    * Naomi Dushay
+    * John Martin
+    * Aaron Collier
 * Date(s): <!-- required -->
-  * proposed: 2019-10-29
+  * drafted: 2019-10-29
   * ...
 
 ## Context and Problem Statement <!-- required -->
@@ -37,7 +41,7 @@ NOTE: Needs discussion: Fedora 3 does not support concurrent writes on the same 
 
 ## Decision Outcome <!-- required -->
 
-Chosen option: "[option 1]", because [justification. e.g., only option, which meets k.o. criterion decision driver | which resolves force force | … | comes out best (see below)].
+TBD!
 
 ### Positive Consequences <!-- optional -->
 
@@ -77,8 +81,3 @@ Chosen option: "[option 1]", because [justification. e.g., only option, which me
 * Good, because [argument b]
 * Bad, because [argument c]
 * ... <!-- numbers of pros and cons can vary -->
-
-## Links <!-- optional -->
-
-* [Link type] [Link to ADR] <!-- example: Refined by [ADR-0005](0005-example.md) -->
-* ... <!-- numbers of links can vary -->
