@@ -6,7 +6,7 @@ permalink: records/0001/
 ---
 # Replace Fedora 3 with Alternative Metadata Store
 
-* Status: proposed
+* Status: drafted
 * Decider(s): <!-- required -->
   * Julian Morley
   * Andrew Berger
@@ -14,13 +14,16 @@ permalink: records/0001/
   * Tom Cramer
   * Hannah Frost
   * Infrastructure Team
-* Author(s):
-  * Justin Coyne
-  * Mike Giarlo
-  * Peter Mangiafico
+    * Justin Coyne
+    * Mike Giarlo
+    * Peter Mangiafico
+    * Jeremy Nelson
+    * Justin Littman
+    * Naomi Dushay
+    * John Martin
+    * Aaron Collier
 * Date(s): <!-- required -->
-  * proposed: 2019-11-06
-  * ...
+  * drafted: 2019-11-06
 
 ## Context and Problem Statement <!-- required -->
 
@@ -45,9 +48,7 @@ Fedora 3 is unsupported and has been unsupported for four years; it is unlikely 
 
 ## Decision Outcome <!-- required -->
 
-**TBD!**
-
-Chosen option: "[option 1]", because [justification. e.g., only option, which meets k.o. criterion decision driver | which resolves force force | … | comes out best (see below)].
+No decision made yet. See status field above.
 
 ## Pros and Cons of the Options <!-- optional -->
 
@@ -95,8 +96,3 @@ Chosen option: "[option 1]", because [justification. e.g., only option, which me
   * Fedora does not provide querying of relationships natively; requires a sidecar index such as Solr which complicates the architecture
 * Note (leaning toward Con)
   * Fedora 4+ incentivizes changing our metadata model to be based on RDF
-
-## Links <!-- optional -->
-
-* [Link type] [Link to ADR] <!-- example: Refined by [ADR-0005](0005-example.md) -->
-* ... <!-- numbers of links can vary -->
