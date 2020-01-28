@@ -4,7 +4,7 @@ title: ADR-0006
 nav_order: 9
 permalink: records/0006/
 ---
-# Replace Assembly Workflow with Deposit API
+# Create a Deposit API for SDR
 
 * Status: drafted
 * Decider(s): <!-- required -->
@@ -25,65 +25,44 @@ permalink: records/0006/
 
 ## Context and Problem Statement <!-- required -->
 
-[Describe the context and problem statement, e.g., in free form using two to three sentences. You may want to articulate the problem in form of a question.]
+Currently the way to create new objects in the SDR is to:
+
+1. Register an object (typically using Argo)
+1. Move files into the `/dor` mount.
+1. Run the assembly workflow (pre-assembly?).
+
+The google books project presents an opportunity to create millions of new objects. We see this as an opportunity to inject an API into the architecture. Creating such and external facing API positions us to accept further deposits from on campus stakeholder such as Big Local News and Open Neuro. APIs allow us to validate the completeness and correctness of the data. We foresee an opportunity to use such an API to refactor internal projects (such as ETDs) so they don't need to have knowledge of the internals of the SDR.
 
 ## Decision Drivers <!-- optional -->
 
-* [driver 1, e.g., a force, facing concern, …]
-* [driver 2, e.g., a force, facing concern, …]
-* ... <!-- numbers of drivers can vary -->
+* APIs make it possible to decouple implementations.  Our current deposit process is tightly coupled to persistence and we would like to sever this coupling.
+* We have potential projects on campus that could deposit to SDR in self-service mode.
+* We occasionally have bad data that causes problems in the workflow.  Having an API would allow us to detect these problems earlier.
 
 ## Considered Options <!-- required -->
 
-* [option 1]
-* [option 2]
-* [option 3]
-* ... <!-- numbers of options can vary -->
+1. Use existing process (no API)
+1. Create an API
 
 ## Decision Outcome <!-- required -->
 
 TBD
 
-### Positive Consequences <!-- optional -->
-
-* [e.g., improvement of quality attribute satisfaction, follow-up decisions required, …]
-* ...
-
-### Negative Consequences <!-- optional -->
-
-* [e.g., compromising quality attribute, follow-up decisions required, …]
-* ...
-
 ## Pros and Cons of the Options <!-- optional -->
 
-### [option 1]
+### Create a deposit API
 
-[example | description | pointer to more information | …] <!-- optional -->
+* Pro
+  * Early data validation.
+  * Depositors don't need to understand how DOR works.
+  * Offer SDR services to more patrons.
+* Con
+  * We have another service to monitor and keep updated.
 
-* Good, because [argument a]
-* Good, because [argument b]
-* Bad, because [argument c]
-* ... <!-- numbers of pros and cons can vary -->
+### Do nothing
 
-### [option 2]
-
-[example | description | pointer to more information | …] <!-- optional -->
-
-* Good, because [argument a]
-* Good, because [argument b]
-* Bad, because [argument c]
-* ... <!-- numbers of pros and cons can vary -->
-
-### [option 3]
-
-[example | description | pointer to more information | …] <!-- optional -->
-
-* Good, because [argument a]
-* Good, because [argument b]
-* Bad, because [argument c]
-* ... <!-- numbers of pros and cons can vary -->
-
-## Links <!-- optional -->
-
-* [Link type] [Link to ADR] <!-- example: Refined by [ADR-0005](0005-example.md) -->
-* ... <!-- numbers of links can vary -->
+* Pro
+  * Less work
+* Con
+  * Depositors need intimate knowledge of DOR to deposit
+  * Clearer path to opening up content flows to campus stakeholders
