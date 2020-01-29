@@ -6,12 +6,20 @@ permalink: records/0000/
 ---
 # Use Markdown Architecture Decision Records
 
-* Status: proposed
+* Status: decided
 * Decider(s):
-  * Mike Giarlo
-  * *your name here*
+  * Infrastructure Team
+    * Justin Coyne
+    * Mike Giarlo
+    * Peter Mangiafico
+    * Jeremy Nelson
+    * Justin Littman
+    * Naomi Dushay
+    * John Martin
+    * Aaron Collier
 * Date(s):
   * Proposed: 2019-04-04
+  * Decided: 2020-01-28
 
 ## Context and Problem Statement
 
