@@ -77,3 +77,20 @@ TBD.
 * Message broker must be supported by Ops.
 * Services become dependent on the Message Broker. (However, Message Brokers are typically designed to be depended on.)
 * The evolution work to begin using the Message Broker.
+
+## Technology selection
+
+[RabbitMQ](https://www.rabbitmq.com/) is the recommended message broker implementation. RabbitMQ satisfies the following requirements:
+
+* Support for multiple messaging patterns, in particular, direct, fanout, and topic.
+* Support for message acknowledgments.
+* Support for persistable message queues.
+* Support for JSON messages.
+* Ruby client available.
+* Puppet deployment available.
+* Docker image available.
+* High availabability / clustering configuration available.
+* Management UI provided.
+* Excellent community / documentation.
+* Widely deployed.
+* And, of course: open source.
