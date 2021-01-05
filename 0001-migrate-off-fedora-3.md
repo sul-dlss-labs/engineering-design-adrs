@@ -6,7 +6,7 @@ permalink: records/0001/
 ---
 # Replace Fedora 3 with Alternative Metadata Store
 
-* Status: drafted
+* Status: superseded by [ADR-0012](0012-dor-datastore.md)]
 * Decider(s): <!-- required -->
   * Julian Morley
   * Andrew Berger
