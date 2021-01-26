@@ -12,7 +12,7 @@ Current ADRs are listed in the sidebar to the left, numbered in sequential, chro
 
 ## Process
 
-For new ADRs, please copy [the MADR-based template](/infrastructure-adrs/template/) as your starting point and build out from there. (More information on the MADR (Markdown Architectural Decision Records) format is available at [https://adr.github.io/madr/](https://adr.github.io/madr/). General information about architectural decision records is available at [https://adr.github.io/](https://adr.github.io).)
+For new ADRs, please copy [the MADR-based template](/template/) as your starting point and build out from there. (More information on the MADR (Markdown Architectural Decision Records) format is available at [https://adr.github.io/madr/](https://adr.github.io/madr/). General information about architectural decision records is available at [https://adr.github.io/](https://adr.github.io).)
 
 New ADR proposals should be drafted as pull requests to [sul-dlss-labs/infrastructure-adrs](https://github.com/sul-dlss-labs/infrastructure-adrs), which will be reviewed and approved by the Infrastructure team (via a process that is not yet documented, but, once it is, will be linked here).
 
