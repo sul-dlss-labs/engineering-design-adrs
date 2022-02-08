@@ -42,7 +42,7 @@ Currently we are using JHOVE 1.x to generate voluminous technical metadata for e
 ## Considered Options <!-- required -->
 
 1. Do nothing
-1. Identify, and only persist, *needed* technical metadata in a well-defined data model (*.e.g.*, the [one used in Princeton's figgy app](https://github.com/pulibrary/figgy/blob/master/app/resources/nested_resources/file_metadata.rb#L4-L35)), using a tool (or tools) other than JHOVE
+1. Identify, and only persist, *needed* technical metadata in a well-defined data model (*.e.g.*, the [one used in Princeton's figgy app](https://github.com/pulibrary/figgy/blob/main/app/resources/nested_resources/file_metadata.rb#L4-L35)), using a tool (or tools) other than JHOVE
 1. Stop extracting technical metadata, though this may conflict with being considered a trusted digital repository
 1. Add resources to worker machines
 1. Run extraction using cloud-based processing

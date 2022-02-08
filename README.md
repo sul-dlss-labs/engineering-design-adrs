@@ -16,7 +16,7 @@ For new ADRs, please copy [the MADR-based template](/template.md) as your starti
 
 New ADR proposals should be drafted as pull requests to [sul-dlss-labs/infrastructure-adrs](https://github.com/sul-dlss-labs/infrastructure-adrs), which will be reviewed and approved by the Infrastructure team (via a process that is not yet documented, but, once it is, will be linked here).
 
-Once your pull request has been reviewed, approved, and merged into the `master` branch, GitHub will automatically trigger a Jekyll build and redeploy the site. You should see your changes within 1-2 minutes of the merge.
+Once your pull request has been reviewed, approved, and merged into the `main` branch, GitHub will automatically trigger a Jekyll build and redeploy the site. You should see your changes within 1-2 minutes of the merge.
 
 ## Acknowledgments
 
