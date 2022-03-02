@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Template
+title: ADR-0014
 nav_order: 17
 permalink: records/0014/
 ---
