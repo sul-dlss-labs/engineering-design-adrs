@@ -27,7 +27,7 @@ permalink: records/0015
 
 ## Context and Problem Statement <!-- required -->
 
-We currently use a [fork of Openwayback](https://github.com/sul-dlss/openwayback) to provide replay of web archive files (WARCs) in the Stanford Web Archive Portal (SWAP). Openwayback does not successfully replay all WARCs that are replayable elsewhere (e.g. Archive-It's Python Wayback), particularly those with Javascript, videos, and other dynamic content.  Our openwayback repo has been significantly modified and is not possible to update with upstream changes without considerable effort, as explored in [swap](https://github.com/sul-dlss/swap). Our existing CDX files are 10-column indexes which lack the compressed length field and do not use SURT-ordered keys, both of which are typical and useful in current index approaches. 
+We currently use a [fork of Openwayback](https://github.com/sul-dlss/openwayback) to provide replay of web archive files (WARCs) in the Stanford Web Archive Portal (SWAP). Openwayback does not successfully replay all WARCs that are replayable elsewhere (e.g. Archive-It's Python Wayback), particularly those with Javascript, videos, and other dynamic content.  Our openwayback repo has been significantly modified and is not possible to update with upstream changes without considerable effort, as explored in [swap](https://github.com/sul-dlss/swap). Our existing CDX files are 10-column indexes which lack the compressed length field and do not use SURT-ordered keys, both of which are typical and useful in current index approaches.
 
 The purpose of this ADR is to propose an alternative replay framework and indexing approach.
 
@@ -44,7 +44,7 @@ The purpose of this ADR is to propose an alternative replay framework and indexi
 
 * pywb
 * pywb + OutbackCDX
-* Upstream Openwayback 
+* Upstream Openwayback
 
 ## Pros and Cons of the Options
 
@@ -54,7 +54,7 @@ The following three options all employ open source software. pywb is licensed wi
 
 * Pro
   * pywb is replacing Openwayback as wayback machine of choice among institutions running a replay system.
-  * Does not require customization to provide access to crawl dates pre-1996. 
+  * Does not require customization to provide access to crawl dates pre-1996.
   * Can continue to leverage the filesystem as a way to communicate between the workflow and the playback application
   * Active development is occurring on the software.
   * Supports embargos and exclusions at a URL level
@@ -64,22 +64,24 @@ The following three options all employ open source software. pywb is licensed wi
   * pywb development is currently done in large part by one developer
   * adding new WARC data to a collection involves merging the existing index with the new index, which can involve unknown amounts of time as collections get bigger.
 * Additional context
-  * It is best practice to reindex WARCs when switching to a new playback system, for consistency. While our existing indexes can be converted with a pywb utility, reindexing would be preferable. 
+  * It is best practice to reindex WARCs when switching to a new playback system, for consistency. While our existing indexes can be converted with a pywb utility, reindexing would be preferable.
 
 ### pywb + OutbackCDX
+
 * Pro
   * All pros from above, including increasing use by community
   * Eliminates need to merge index levels as collections grow; new indexes would be POSTed to OutbackCDX as created.
   * Searching indexes would be faster (to an unknown degree)
 
-* Con  
+* Con
   * OutbackCDX development led by small number of developers
   * OutbackCDX is another Java application to support
 
 * Additional context
-  * It is best practice to reindex WARCs when switching to a new playback systems for consistency. While our current indexes can be converted with a pywb utility, reindexing would be preferable. 
+  * It is best practice to reindex WARCs when switching to a new playback systems for consistency. While our current indexes can be converted with a pywb utility, reindexing would be preferable.
 
-### Upstream Openwayback 
+### Upstream Openwayback
+
 * Pro
   * Exploratory work occurred and can be basis of new work
   * Relatively familiar application, although requires Java which is less widely used by team
@@ -90,11 +92,9 @@ The following three options all employ open source software. pywb is licensed wi
   * Will still require customization to support WARC collections
   * Adding new content involves indexing and merging, which can be costly in terms of time and resource utilization.
 
-
 ## Decision Outcome <!-- required -->
 
 To be discussed
-
 
 ### Positive Consequences <!-- optional -->
 
