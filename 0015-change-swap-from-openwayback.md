@@ -48,6 +48,8 @@ The purpose of this ADR is to propose an alternative replay framework and indexi
 
 ## Pros and Cons of the Options
 
+The following three options all employ open source software. pywb is licensed with the [AGPL](https://en.wikipedia.org/wiki/GNU_Affero_General_Public_License), which would prevent closed source reuse or alternative licensing of pywb. OpenWayback and OutbackCDX both use the liberal Apache license.
+
 ### pywb
 
 * Pro
@@ -60,6 +62,7 @@ The purpose of this ADR is to propose an alternative replay framework and indexi
 * Con
   * As a Python application, is less familiar to developers and operations team
   * pywb development is currently done in large part by one developer
+  * adding new WARC data to a collection involves merging the existing index with the new index, which can involve unknown amounts of time as collections get bigger.
 * Additional context
   * It is best practice to reindex WARCs when switching to a new playback system, for consistency. While our existing indexes can be converted with a pywb utility, reindexing would be preferable. 
 
@@ -67,7 +70,7 @@ The purpose of this ADR is to propose an alternative replay framework and indexi
 * Pro
   * All pros from above, including increasing use by community
   * Eliminates need to merge index levels as collections grow; new indexes would be POSTed to OutbackCDX as created.
-  * Searching indexes would be faster (to unknown degree)
+  * Searching indexes would be faster (to an unknown degree)
 
 * Con  
   * OutbackCDX development led by small number of developers
@@ -85,6 +88,7 @@ The purpose of this ADR is to propose an alternative replay framework and indexi
   * Playback is not up to date with contemporary websites
   * Many other institution moving away from Openwayback for replay
   * Will still require customization to support WARC collections
+  * Adding new content involves indexing and merging, which can be costly in terms of time and resource utilization.
 
 
 ## Decision Outcome <!-- required -->
