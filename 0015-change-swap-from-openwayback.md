@@ -29,16 +29,19 @@ permalink: records/0015
 
 We currently use a [fork of Openwayback](https://github.com/sul-dlss/openwayback) to provide replay of web archive files (WARCs) in the Stanford Web Archive Portal (SWAP). Openwayback does not successfully replay all WARCs that are replayable elsewhere (e.g. Archive-It's Python Wayback), particularly those with Javascript, videos, and other dynamic content.  Our openwayback repo has been significantly modified and is not possible to update with upstream changes without considerable effort, as explored in [swap](https://github.com/sul-dlss/swap). Our existing CDX files are 10-column indexes which lack the compressed length field and do not use SURT-ordered keys, both of which are typical and useful in current index approaches.
 
-The purpose of this ADR is to propose an alternative replay framework and indexing approach.
+The purpose of this ADR is to propose an alternative replay framework and indexing approach. For a previous discussion of some of this issue see the [Indexing](https://github.com/sul-dlss/web-archiving/wiki/Indexing) wiki page.
 
 ## Decision Drivers <!-- optional -->
 
 * Support replay of WARCs with dynamic content as well as legacy WARCs, including from the early Web (SLAC)
 * Support for indexing WARCs into CDX/CDXJ format
 * Can exclude content at the URL level, at a minimum
+* Can provide/deny access based on whether the user is on site or not.
+* Can delete content at the WARC level
 * Infrastructure team can support application
 * Operations team can support application
 * Use actively developed software with community support
+* Is it beneficial for playback to retain the notion of *collections*, or can all the archived content be treated as one big collection?
 
 ## Considered Options <!-- required -->
 
@@ -62,7 +65,9 @@ The following three options all employ open source software. pywb is licensed wi
 * Con
   * As a Python application, is less familiar to developers and operations team
   * pywb development is currently done in large part by one developer
-  * adding new WARC data to a collection involves merging the existing index with the new index, which can involve unknown amounts of time as collections get bigger.
+  * adding new WARC data to a collection involves merging the existing index with the new index, which can involve unknown amounts of time as collections get bigger, athough approaches like the current `level[0-3].cdx` approach could provide a way to mitigate this cost.
+  * without the creation of new tooling, *deleting* WARC content would require immediate reindexing of the entire collection that the content is a part of
+  * moving WARC data from one collection to another would require immediate reindexing of both collections, but would be unnecessary if there is only one big collection
 * Additional context
   * It is best practice to reindex WARCs when switching to a new playback system, for consistency. While our existing indexes can be converted with a pywb utility, reindexing would be preferable.
 
@@ -71,11 +76,14 @@ The following three options all employ open source software. pywb is licensed wi
 * Pro
   * All pros from above, including increasing use by community for indexing.
   * Eliminates need to merge index levels as collections grow; new indexes would be POSTed to OutbackCDX as created.
-  * Searching indexes would be faster (to an unknown degree).
+  * OutbackCDX makes it easy to remove WARC content from an index, by issuing a HTTP DELETE request containing the CDXJ data to be deleted.
+  * Moving content between collections (if needed) would amount to deleting the CDXJ data from the existing collection and adding it to the new collection, which should be quick operations.
+  * Searching indexes should be faster since OutbackCDX uses RocksDB to do the lookups rather than the binary search implementation that is built into pywb. We would need to do testing to compare how much of a difference this is.
 
 * Con
   * OutbackCDX development led by small number of developers.
   * OutbackCDX is another Java application to support.
+  * "fuzzy" matching allows looking up URLs which may have timestamps and other boilerplate in them, which is sometimes needed for replay of video and social media content. It is unclear how pywb and OutbackCDX fuzzy matching implementations are kept in sync. If there are lots of people using OutbackCDX this may be more of a Pro than a Con since improvements that are made there may not get reflected in pywb's implementation. 
 
 * Additional context
   * It is best practice to reindex WARCs when switching to a new playback systems for consistency. While our current indexes can be converted with a pywb utility, reindexing would be preferable.
