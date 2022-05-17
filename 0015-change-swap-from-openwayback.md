@@ -79,11 +79,13 @@ The following three options all employ open source software. pywb is licensed wi
   * OutbackCDX makes it easy to remove WARC content from an index, by issuing a HTTP DELETE request containing the CDXJ data to be deleted.
   * Moving content between collections (if needed) would amount to deleting the CDXJ data from the existing collection and adding it to the new collection, which should be quick operations.
   * Searching indexes should be faster since OutbackCDX uses RocksDB to do the lookups rather than the binary search implementation that is built into pywb. We would need to do testing to compare how much of a difference this is.
+  * pywb migration documentation [recommends using OutbackCDX with pywb](https://pywb.readthedocs.io/en/latest/manual/owb-transition.html?highlight=outbackcdx#openwayback-transition-guide). This is presumably because pywb and OutbackCDX are being used together by large national libraries.
 
 * Con
-  * OutbackCDX development led by small number of developers.
+  * Outback CDX does not support querying all or multiple indexes at once. They must be queried one by one. Pywb does not yet provide ability to automatically query all OutbackCDX indexes.
+  * OutbackCDX development is led by small number of developers.
   * OutbackCDX is another Java application to support.
-  * "fuzzy" matching allows looking up URLs which may have timestamps and other boilerplate in them, which is sometimes needed for replay of video and social media content. It is unclear how pywb and OutbackCDX fuzzy matching implementations are kept in sync. If there are lots of people using OutbackCDX this may be more of a Pro than a Con since improvements that are made there may not get reflected in pywb's implementation. 
+  * "fuzzy" matching allows looking up URLs which may have timestamps and other boilerplate in them, which is sometimes needed for replay of video and social media content. It is unclear how pywb and OutbackCDX fuzzy matching implementations are kept in sync. If there are lots of people using OutbackCDX this may be more of a Pro than a Con since improvements that are made there may not get reflected in pywb's implementation.
 
 * Additional context
   * It is best practice to reindex WARCs when switching to a new playback systems for consistency. While our current indexes can be converted with a pywb utility, reindexing would be preferable.
