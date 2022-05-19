@@ -6,7 +6,7 @@ permalink: records/0015
 ---
 # Replace Openwayback with pywb
 
-* Status: [proposed] <!-- required -->
+* Status: drafted <!-- required -->
 * Decider(s): <!-- required -->
   * Andrew Berger
   * Peter Chan
