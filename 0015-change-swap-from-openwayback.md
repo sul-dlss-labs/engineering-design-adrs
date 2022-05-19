@@ -105,17 +105,7 @@ The following three options all employ open source software. pywb is licensed wi
 
 ## Decision Outcome <!-- required -->
 
-To be discussed
-
-### Positive Consequences <!-- optional -->
-
-* [e.g., improvement of quality attribute satisfaction, follow-up decisions required, …]
-* ...
-
-### Negative Consequences <!-- optional -->
-
-* [e.g., compromising quality attribute, follow-up decisions required, …]
-* ...
+The infrastructure team, combined with Andrew Berger and Peter Chan, convened a meeting on May 19 to discuss the three presented options. The consensus was to proceed with the first option (using pywb without OutbackCDX) pending performance testing of indexing and searching of multi-TB subset of the web archive content. The decision was largely motivated by an interest in simplifying service maintenance (less moving pieces to keep up to date) and reflecting on the relatively narrow developer and install bases there for these applications. The decision can also be revisited in the future as we learn more about using pywb over time.
 
 ## Unknowns
 
