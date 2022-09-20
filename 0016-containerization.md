@@ -4,7 +4,7 @@ title: ADR-0016
 nav_order: 19
 permalink: records/0016/
 ---
-# [Containerization of SDR applications]
+# Containerization of SDR applications
 
 * Status: drafted
 * Decider(s):
