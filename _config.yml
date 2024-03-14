@@ -20,7 +20,7 @@ email: mjgiarlo@stanford.edu
 
 description: >- # this means to ignore newlines until "baseurl:"
   A running list of architecture decision records (ADRs), documenting architectural
-  decisions made by the DLSS Infrastructure team. Architecture decisions pertain to
+  decisions made by the DLSS Engineering and Design team. Architecture decisions pertain to
   practices, projects, policies, software, system architecture, and technology selection.
 
   # baseurl: "" # the subpath of your site, e.g. /blog
@@ -42,7 +42,7 @@ search_enabled: true
 
 aux_links:
   "Source on GitHub":
-    - "//github.com/sul-dlss-labs/infrastructure-adrs"
+    - "//github.com/sul-dlss-labs/engineering-design-adrs"
 
 relative_links:
   enabled: true
