@@ -51,7 +51,7 @@ Three original options were considered, as summarized in [this document](https:/
 * Option 2 had derivatives generated during accessioning (similar to JP2 derivative creation)
 * Option 3 had derivatives generated after accessioning
 
-After considering the pros and cons of each approach, option 3 was selected, and is described here.  The deficiencies of option 1 and 2 that led to option 3 being selected are summarized in the above document, but it largely it was driven by the requirement that generation of these derivatives should not delay accessioning.
+After considering the pros and cons of each approach, option 3 was selected, and is described here.  The pros and cons of the vairous options are summarized in the above document, and the reason option 3 was selected was the requirement that generation of these derivatives should not delay accessioning, which would not be possible with options 1 and 2.
 
 The proposed solution uses a combination of a messaging and workflow driven solutions as described in more detail in [this document](https://docs.google.com/document/d/1JLJwio7xVDDh75KY3dZJIFPDep-92hoQJ5p9EgFKabY) and summarized below.
 
@@ -64,7 +64,7 @@ The basic flow and architecture is:
 * The user initiates accessioning via current systems, e.g. pre-assembly, Goobi, H2.  New user interface elements will need to be added to indicate if OCR or transcription is needed for the material or batch of materials.  This will set new fields in cocina and/or add new workflow variables.
 * Accessioning will proceed as normal.
 * When accessioning is complete, an `end-accession.completed` message is currently sent.  A new service will look for these messages and [use logic](https://docs.google.com/document/d/1JLJwio7xVDDh75KY3dZJIFPDep-92hoQJ5p9EgFKabY/edit#heading=h.n930qglopzgc) to create the new OCR/captioning workflow for that object if needed.  Logic will the content type, the new fields set and the existence of derivatives to determine if the new OCR/captioning workflow is needed.
-* The new workflow will have consist of several steps, wich will inclue any required versioning, OCR and transcription, and possible pause of review.
+* The new workflow will have consist of several steps, which will inclue any required versioning, OCR and transcription, and possible pause of review.  If review is required, it will be indicated by the operator ahead of time via a UI element, and this will be passed through to the workflow.
 * The OCR will be peformed by ABBYY, and the transcription will be peformed by Whipser.  These services are likely to be run separately from the server(s) monitoring for `end-accession.completed` and running the new robots, and will triggered by API calls from the robots.
 * As part of the workflow, the object will be opened, and then closed when OCR and transcrption is complete to ensure files are preserved.
 * Closing the object will trigger assemblyWF, which will ensure the files are properly shelved and preserved.
