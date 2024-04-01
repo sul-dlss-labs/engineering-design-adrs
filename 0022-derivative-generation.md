@@ -25,7 +25,7 @@ permalink: records/0022
 
 Automated OCR (from images/PDFs) and transcription (from video/audio) are desired for a subset of content deposited in SDR in order to improve accessibility and discoverability.  Current processes for generating these derivative files are manual and require operator intervention.  This proposal is to automate the generation of these derivative files via various mechanisms (either on-demand or by other requests made by operators).
 
-This proposal addresses so called "non-image" derivatives (though they may be referred to simply as "derivatives" throughout this ADR).  For the purpose of this ADR, "non-image" derivatives are defined as derivative files which add value to the delivery of content, but are not stricly required for delivery itself.  For example, JP2s must be created for the image viewer to work, and so these derivatives must be generated during accessioning prior to shelving.  OCR and transcription derivative files are used to make content accessible and searchable, but the viewers themselves will still work. Note that while the viewer will work, it may not meet accessibly requirements until the derivatives become available.
+This proposal addresses so called "non-image" derivatives (though they may be referred to simply as "derivatives" throughout this ADR).  For the purpose of this ADR, "non-image" derivatives are defined as derivative files which add value to the delivery of content, but are not stricly required for delivery itself.  For example, JP2s must be created for the image viewer to work, and so these derivatives must be generated during accessioning prior to shelving.  OCR and transcription derivative files are used to make content accessible and searchable, but the viewers themselves will still work without them. Note that while the viewer will work, it may not meet accessibly requirements until the derivatives become available.
 
 This distinction is useful because some derivatives must be generated during accessioning, while others may be generated after accessioning.
 
@@ -57,15 +57,15 @@ The proposed solution uses a combination of a messaging and workflow driven solu
 
 ## Decision Outcome <!-- required -->
 
-After [several discussions](https://docs.google.com/document/d/1H1zy-yCDErMTf2IWK1PdN9r_6IjqRqiREc0yYnaiYvo) as part of an Architecture Forum, we propose to use a combination of messaging and new workflow(s) to produce non-image derivatives, a form of Option 3 as decribed in documents listed above.
+After [several discussions](https://docs.google.com/document/d/1H1zy-yCDErMTf2IWK1PdN9r_6IjqRqiREc0yYnaiYvo) as part of an Architecture Forum, we propose to use a combination of messaging and new workflow(s) to produce non-image derivatives, a form of Option 3 as described in documents listed above.
 
 The basic flow and architecture is:
 
 * The user initiates accessioning via current systems, e.g. pre-assembly, Goobi, H2.  New user interface elements will need to be added to indicate if OCR or transcription is needed for the material or batch of materials.  This will set new fields in cocina and/or add new workflow variables.
 * Accessioning will proceed as normal.
-* When accessioning is complete, an `end-accession.completed` message is currently sent.  A new service will look for these messages and [use logic](https://docs.google.com/document/d/1JLJwio7xVDDh75KY3dZJIFPDep-92hoQJ5p9EgFKabY/edit#heading=h.n930qglopzgc) to create the new OCR/captioning workflow for that object if needed.  Logic will the content type, the new fields set and the existence of derivatives to determine if the new OCR/captioning workflow is needed.
+* When accessioning is complete, an `end-accession.completed` message is currently sent.  A new service will look for these messages and [use logic](https://docs.google.com/document/d/1JLJwio7xVDDh75KY3dZJIFPDep-92hoQJ5p9EgFKabY/edit#heading=h.n930qglopzgc) to create the new OCR/captioning workflow for that object if needed.  Logic will consider the content type, the new fields set and the existence of derivatives to determine if the new OCR/captioning workflow is needed.
 * The new workflow will have consist of several steps, which will include any required versioning, OCR and transcription, and possible pause of review.  If review is required, it will be indicated by the operator ahead of time via a UI element (most likely in pre-assembly or Goobi), and this will be passed through to the workflow.
-* The OCR will be peformed by ABBYY, and the transcription will be peformed by Whisper.  These services are likely to be run separately from the server(s) monitoring for `end-accession.completed` and running the new robots, and will triggered by API calls from the robots.
+* The OCR will be peformed by ABBYY, and the transcription will be performed by Whisper. These services are likely to be run separately from the server(s) monitoring for `end-accession.completed` and running the new robots, and will triggered by API calls from the robots.
 * As part of the workflow, the object will be opened, and then closed when OCR and transcription is complete to ensure files are preserved.
 * Closing the object will trigger accessionWF, which will ensure the files are properly shelved and preserved.
 * Changes being made to versioning in a separate workcycle will ensure that no other user or process can close the object while this new workflow is in process, preventing two processes from altering the object at the same time.
