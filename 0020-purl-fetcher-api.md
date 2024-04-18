@@ -7,15 +7,15 @@ permalink: records/0020
 
 # Create a publish/shelve API that support versions for access systems
 
-- Status: drafted
+- Status: Approved
 - Decider(s): <!-- required -->
   - Access Team
   - Infrastructure Team
   - Andrew (Repository Admin)
   - ...
 - Date(s):
-  - Status (from above): 2024-03-14
-  - ...
+  - Drafted: 2024-03-14
+  - Approved: 2024-04-28
 
 Technical Story: n/a
 
@@ -40,7 +40,7 @@ Ideally, this would be a single API where the files are uploaded and metadata is
 
 ## Decision Outcome <!-- required -->
 
-Chosen option: "[option 1]", because [justification. e.g., only option, which meets k.o. criterion decision driver | which resolves force force | … | comes out best (see below)].
+Chosen option: "Use a deposit API for purl-fetcher", because this allows for decoupling dor-services-app from the file structure of `/purl` and `/stacks`. This will allow the access projects to move to versioned object storage, without having to make changes in dor-services-app.
 
 ### Positive Consequences <!-- optional -->
 
