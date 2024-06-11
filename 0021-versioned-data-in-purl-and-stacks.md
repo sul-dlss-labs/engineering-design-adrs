@@ -57,8 +57,10 @@ Chosen option: "Oxford Common File Layout", because this has the capability of s
 * Good, because other cultural heritage institutions use OCFL for versioning.
 * Good, because it runs on common file systems.
 * Good, because it's a relatively simple specification.
+* Neutral, not a perfect fit, because OCFL expects stable versions, and we would misuse it by overwriting v1. We may want to use the "mutable head" extension.
 * Bad, because data migration is required
-* Bad, because application changes are required
+* Bad, because application changes are required (e.g. if file paths are not predictable.)
+  * If media is never versioned (e.g. always v1), then we can predict its path without reading the OCFL manifest.
 
 ### separate directory for each version under the object directory
 
