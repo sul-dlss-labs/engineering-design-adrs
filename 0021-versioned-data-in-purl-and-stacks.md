@@ -6,15 +6,23 @@ permalink: records/0021
 ---
 # Versioned data in purl and stacks
 
-* Status: drafted
-* Decider(s): <!-- required -->
-  * Access Team
-  * Julian Morley
-  * Andrew Berger
-  * ...
-* Date(s): <!-- required -->
+* Status: Approved
+* Decider(s):
+  * Chris Beer
+  * Aaron Collier
+  * Justin Coyne
+  * Michael Giarlo
+  * Justin Littman
+  * Marlo Longley
+  * Peter Mangiafico
+  * John Martin
+  * Niqui O'Neill
+  * Steve Taylor
+  * Vivian Wong
+  * Laura Wrubel
+* Date(s):
   * Drafted: 2024-03-15
-  * ...
+  * Approved: 2024-06-25
 
 Technical Story: n/a
 
@@ -33,11 +41,12 @@ Open Access (OA) guidelines require that we allow authors to publish each versio
 * Use the Oxford Common File Layout (OCFL) <https://ocfl.io/>.  We would merge the existing purl (metadata) and stacks (data) file systems into a single filesystem.  Each object will have a separate metadata and data directory under it.
 * A separate directory for each version under the object directory
   * Optionally using a file system that can deduplicate data.
+* Custom file layout with content addressable addressable storage using symbolic links to preserve backward compatability
 * Create a new SDR item for each version.
 
 ## Decision Outcome
 
-Chosen option: "Oxford Common File Layout", because this has the capability of storing multiple versions.  It can deduplicate data it does not require any complex configuration or exotic file system.
+Chosen option: "Custom file layout with content addressable addressable storage", because this has the capability of storing multiple versions.  It can deduplicate data it does not require any complex configuration or exotic file system.  It requires fewer lookups than OCFL. Symbolic links will preserve backward compatibility with dissemination services (image server, media server, geoserver, etc.)
 
 ### Positive Consequences <!-- optional -->
 
@@ -73,6 +82,15 @@ Chosen option: "Oxford Common File Layout", because this has the capability of s
 * Good, because no migration of data or systems is required
 * Bad, because data would be massivly duplicated as new versions were created
 * Bad, because multiple versions of each object would show up in discovery and management interfaces.
+
+### Custom file layout with content addressable addressable storage
+
+* Good, because no migration of data or systems is required (using symbolic links)
+* Good, because data is deduplicated between versions
+* Neutral, we have to build and document this approach. We are not sharing with any other institutions.
+* Good, because it runs on common file systems.
+* Good, because it's a relatively simple.
+* Bad, because links have to be kept in synch with content addressed files. (e.g. two sources of truth)
 
 ## Links
 
