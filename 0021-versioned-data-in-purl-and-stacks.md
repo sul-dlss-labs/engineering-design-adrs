@@ -19,7 +19,7 @@ permalink: records/0021
   * Niqui O'Neill
   * Steve Taylor
   * Vivian Wong
-  * Laura Wruble
+  * Laura Wrubel
 * Date(s):
   * Drafted: 2024-03-15
   * Approved: 2024-06-24
